@@ -113,6 +113,30 @@ class _LoginState extends State<Login> {
       ),
     );
 
+    final GoogleSignIn = ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: ElevatedButton(
+        onPressed: () {
+
+        },
+        child: const Text(
+          "Sign In with Google",
+          style: TextStyle(
+              color: kPrimaryLightColor,
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: kPrimaryColor,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          textStyle: const TextStyle(
+              color: kPrimaryLightColor,
+              fontSize: 25,
+              fontWeight: FontWeight.w500),
+        ),
+      ),
+    );
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Background(
@@ -152,6 +176,8 @@ class _LoginState extends State<Login> {
               SizedBox(height: size.height * 0.03),
               loginButton,
               SizedBox(height: size.height * 0.03),
+              GoogleSignIn,
+              SizedBox(height: size.height * 0.03),
               ClipRRect(
                 borderRadius: BorderRadius.circular(29),
                 child: ElevatedButton(
@@ -190,7 +216,7 @@ class _LoginState extends State<Login> {
           context, MaterialPageRoute(builder: (context) => const Dashboard()));
     }
   }
-
+  
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
