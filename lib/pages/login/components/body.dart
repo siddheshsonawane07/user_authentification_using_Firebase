@@ -30,22 +30,6 @@ class _LoginState extends State<Login> {
   final _auth = FirebaseAuth.instance;
   String? errorMessage;
 
-  checkAuthentification() async {
-    _auth.authStateChanges().listen((User? user) {
-      if (user != null) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const Dashboard()));
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // ignore: unnecessary_this
-    this.checkAuthentification();
-  }
-
   @override
   Widget build(BuildContext context) {
     final emailField = TextFormField(
@@ -172,13 +156,12 @@ class _LoginState extends State<Login> {
                 borderRadius: BorderRadius.circular(29),
                 child: ElevatedButton(
                   child: const Text(
-                    "Don't have an account ? SIGNU",
+                    "Don't have an account ? SIGNUP",
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpScreen()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const SignUpScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -233,4 +216,5 @@ class _LoginState extends State<Login> {
       }
     }
   }
+
 }
