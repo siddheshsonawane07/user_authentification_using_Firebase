@@ -30,20 +30,20 @@ class _LoginState extends State<Login> {
   final _auth = FirebaseAuth.instance;
   String? errorMessage;
 
-  // checkAuthentification() async {
-  //   _auth.authStateChanges().listen((User? user) {
-  //     if (user == null) {
-  //       Navigator.push(context,
-  //           MaterialPageRoute(builder: (context) => const WelcomeScreen()));
-  //     }
-  //   });
-  // }
+  checkAuthentification() async {
+    _auth.authStateChanges().listen((User? user) {
+      if (user != null) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const Dashboard()));
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     // ignore: unnecessary_this
-    // this.checkAuthentification();
+    this.checkAuthentification();
   }
 
   @override
@@ -176,8 +176,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
+                    Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                             builder: (context) => const SignUpScreen()));
                   },
