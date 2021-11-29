@@ -219,7 +219,6 @@ class _SignUpState extends State<SignUp> {
                 "assets/icons/signup.svg",
                 height: size.height * 0.35,
               ),
-              SizedBox(height: size.height * 0.03),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 padding:
@@ -244,13 +243,13 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: size.height * 0.03),
               signUpButton,
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.01),
               ClipRRect(
                 borderRadius: BorderRadius.circular(29),
                 child: ElevatedButton(
                   child: const Text(
                     'Already have a account ? LOGIN',
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    style: TextStyle(fontSize: 12, color: kPrimaryColor),
                   ),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(

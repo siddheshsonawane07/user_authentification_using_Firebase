@@ -113,29 +113,14 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    final ForgotPassword = ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: ElevatedButton(
-        onPressed: () {
-
-        },
-        child: const Text(
-          "Forgot Passwprd",
-          style: TextStyle(
-              color: kPrimaryLightColor,
-              fontSize: 20,
-            
-              fontWeight: FontWeight.bold),
-        ),
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          primary: kPrimaryColor,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          textStyle: const TextStyle(
-              color: kPrimaryLightColor,
-              fontSize: 25,
-              fontWeight: FontWeight.w500),
-        ),
+    final ForgotPassword = TextButton(
+      onPressed: () {},
+      child: const Text(
+        "Forgot Passwprd",
+        style: TextStyle(
+            color: kPrimaryColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold),
       ),
     );
 
@@ -177,14 +162,15 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: size.height * 0.03),
               loginButton,
-              SizedBox(height: size.height * 0.03),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.01),
+              ForgotPassword,
+              SizedBox(height: size.height * 0.02),
               ClipRRect(
-                borderRadius: BorderRadius.circular(29),
+                borderRadius: BorderRadius.circular(25),
                 child: ElevatedButton(
                   child: const Text(
                     "Don't have an account ? SIGNUP",
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    style: TextStyle(fontSize: 12, color: kPrimaryColor),
                   ),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -217,7 +203,7 @@ class _LoginState extends State<Login> {
           context, MaterialPageRoute(builder: (context) => const Dashboard()));
     }
   }
-  
+
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
