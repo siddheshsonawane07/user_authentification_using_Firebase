@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:toycathon/components/user_mode.dart';
-import 'package:toycathon/pages/welcome/welcome_screen.dart';
+import 'package:toycathon/pages/login/components/body.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -78,6 +78,6 @@ class _DashboardState extends State<Dashboard> {
 Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+        MaterialPageRoute(builder: (context) => const Login()));
 }
 }

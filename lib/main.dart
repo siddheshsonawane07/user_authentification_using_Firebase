@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:toycathon/constants.dart';
-import 'package:toycathon/pages/welcome/components/body.dart';
+import 'package:toycathon/pages/login/components/body.dart';
 
 void main1() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -28,6 +28,6 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        home: Body(),
+        home: Login(),
       );
 }

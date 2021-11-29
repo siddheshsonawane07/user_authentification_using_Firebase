@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toycathon/components/user_mode.dart';
 import 'package:toycathon/constants.dart';
+import 'package:toycathon/pages/login/components/body.dart';
 import 'package:toycathon/pages/login/login_screen.dart';
 import 'package:toycathon/pages/signup/components/background.dart';
-import 'package:toycathon/pages/welcome/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -329,7 +329,7 @@ class _SignUpState extends State<SignUp> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => Login()),
         (route) => false);
   }
 }

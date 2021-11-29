@@ -177,6 +177,20 @@ class _LoginState extends State<Login> {
     );
   }
 
+  @override
+  void initState() {
+    CheckUserLog();
+  }
+
+  void CheckUserLog() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final user = await auth.currentUser;
+    if (user != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const Dashboard()));
+    }
+  }
+
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -216,5 +230,4 @@ class _LoginState extends State<Login> {
       }
     }
   }
-
 }
