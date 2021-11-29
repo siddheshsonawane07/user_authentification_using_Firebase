@@ -113,20 +113,22 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    final GoogleSignIn = ClipRRect(
+    final ForgotPassword = ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: ElevatedButton(
         onPressed: () {
 
         },
         child: const Text(
-          "Sign In with Google",
+          "Forgot Passwprd",
           style: TextStyle(
               color: kPrimaryLightColor,
               fontSize: 20,
+            
               fontWeight: FontWeight.bold),
         ),
         style: ElevatedButton.styleFrom(
+          elevation: 0,
           primary: kPrimaryColor,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           textStyle: const TextStyle(
@@ -176,7 +178,6 @@ class _LoginState extends State<Login> {
               SizedBox(height: size.height * 0.03),
               loginButton,
               SizedBox(height: size.height * 0.03),
-              GoogleSignIn,
               SizedBox(height: size.height * 0.03),
               ClipRRect(
                 borderRadius: BorderRadius.circular(29),
