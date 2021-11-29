@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:toycathon/components/user_mode.dart';
+import 'package:toycathon/components/user_model.dart';
 import 'package:toycathon/constants.dart';
 import 'package:toycathon/pages/login/components/body.dart';
 import 'package:toycathon/pages/login/login_screen.dart';

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:toycathon/components/user_mode.dart';
+import 'package:toycathon/components/user_model.dart';
 import 'package:toycathon/pages/login/components/body.dart';
 
 class Dashboard extends StatefulWidget {
