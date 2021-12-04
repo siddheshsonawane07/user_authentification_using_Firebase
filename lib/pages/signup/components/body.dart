@@ -1,16 +1,16 @@
-// ignore_for_file: unnecessary_new, duplicate_ignore
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_auth/email_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:toycathon/components/user_model.dart';
 import 'package:toycathon/constants.dart';
 import 'package:toycathon/pages/login/components/body.dart';
 import 'package:toycathon/pages/login/login_screen.dart';
 import 'package:toycathon/pages/signup/components/background.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,16 +29,36 @@ class _SignUpState extends State<SignUp> {
   String? errorMessage;
   final _formKey = GlobalKey<FormState>();
   final firstNameEditingController = new TextEditingController();
-  final secondNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   final confirmPasswordEditingController = new TextEditingController();
-
-
+  final otpcontroller = new TextEditingController();
+  EmailAuth emailAuth = new EmailAuth(sessionName: "Test session");
 
   @override
   void initState() {
     super.initState();
+  }
+
+  void sendOTP() async {
+    var res =
+        await emailAuth.sendOtp(recipientMail: emailEditingController.text);
+    if (res) {
+      print("OTP Sent");
+    } else {
+      print("Error in sending OTP");
+    }
+  }
+
+  void verifyOTP() {
+    var res = emailAuth.validateOtp(
+        recipientMail: emailEditingController.text,
+        userOtp: otpcontroller.text);
+    if (res) {
+      print("OTP Verified");
+    } else {
+      print("Invalid OTP");
+    }
   }
 
   @override
@@ -101,6 +121,34 @@ class _SignUpState extends State<SignUp> {
       ),
     );
 
+    final otp = TextFormField(
+      autofocus: false,
+      controller: otpcontroller,
+      keyboardType: TextInputType.number,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter OTP");
+        }
+        // reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter Correct OTP");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        emailEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      cursorColor: kPrimaryColor,
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.email,
+          color: kPrimaryColor,
+        ),
+        hintText: "Email",
+        border: InputBorder.none,
+      ),
+    );
     final passwordfield = TextFormField(
       autofocus: false,
       controller: passwordEditingController,
@@ -226,9 +274,8 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(fontSize: 12, color: kPrimaryColor),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
