@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,7 +70,7 @@ class _SignUpState extends State<SignUp> {
       controller: firstNameEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("First Name cannot be Empty");
         }
@@ -111,13 +113,14 @@ class _SignUpState extends State<SignUp> {
       },
       textInputAction: TextInputAction.next,
       cursorColor: kPrimaryColor,
-      decoration: const InputDecoration(
-        icon: Icon(
+      decoration:  InputDecoration(
+        icon: const Icon(
           Icons.email,
           color: kPrimaryColor,
         ),
         hintText: "Email",
         border: InputBorder.none,
+        suffixIcon: TextButton(child: const Text("Send OTP"),onPressed: ()=> sendOTP())
       ),
     );
 
@@ -129,26 +132,24 @@ class _SignUpState extends State<SignUp> {
         if (value!.isEmpty) {
           return ("Please Enter OTP");
         }
-        // reg expression for email validation
-        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return ("Please Enter Correct OTP");
-        }
         return null;
       },
       onSaved: (value) {
-        emailEditingController.text = value!;
+        otpcontroller.text = value!;
       },
       textInputAction: TextInputAction.next,
       cursorColor: kPrimaryColor,
-      decoration: const InputDecoration(
-        icon: Icon(
+      decoration:  InputDecoration(
+        icon: const Icon(
           Icons.email,
           color: kPrimaryColor,
         ),
-        hintText: "Email",
+        hintText: "OTP",
         border: InputBorder.none,
+        suffixIcon: TextButton(child: const Text("Verify OTP"),onPressed: ()=> verifyOTP())
       ),
     );
+    
     final passwordfield = TextFormField(
       autofocus: false,
       controller: passwordEditingController,
@@ -257,6 +258,7 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       firstNameField,
                       emailField,
+                      otp,
                       passwordfield,
                       confirmPasswordField,
                     ],
