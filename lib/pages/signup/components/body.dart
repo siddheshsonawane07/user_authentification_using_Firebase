@@ -113,15 +113,22 @@ class _SignUpState extends State<SignUp> {
       },
       textInputAction: TextInputAction.next,
       cursorColor: kPrimaryColor,
-      decoration:  InputDecoration(
-        icon: const Icon(
-          Icons.email,
-          color: kPrimaryColor,
-        ),
-        hintText: "Email",
-        border: InputBorder.none,
-        suffixIcon: TextButton(child: const Text("Send OTP"),onPressed: ()=> sendOTP())
-      ),
+      decoration: InputDecoration(
+          icon: const Icon(
+            Icons.email,
+            color: kPrimaryColor,
+          ),
+          hintText: "Email",
+          border: InputBorder.none,
+          suffixIcon: TextButton(
+              child: const Text(
+                "Send OTP",
+                style: TextStyle(color: kPrimaryColor, fontSize: 8),
+              ),
+              onPressed: () {
+                sendOTP();
+                Fluttertoast.showToast(msg: "OTP Sent");
+              })),
     );
 
     final otp = TextFormField(
@@ -139,17 +146,24 @@ class _SignUpState extends State<SignUp> {
       },
       textInputAction: TextInputAction.next,
       cursorColor: kPrimaryColor,
-      decoration:  InputDecoration(
-        icon: const Icon(
-          Icons.email,
-          color: kPrimaryColor,
-        ),
-        hintText: "OTP",
-        border: InputBorder.none,
-        suffixIcon: TextButton(child: const Text("Verify OTP"),onPressed: ()=> verifyOTP())
-      ),
+      decoration: InputDecoration(
+          icon: const Icon(
+            Icons.email,
+            color: kPrimaryColor,
+          ),
+          hintText: "OTP",
+          border: InputBorder.none,
+          suffixIcon: TextButton(
+              child: const Text(
+                "Verify OTP",
+                style: TextStyle(color: kPrimaryColor, fontSize: 8),
+              ),
+              onPressed: () {
+                verifyOTP();
+                Fluttertoast.showToast(msg: "OTP Verified");
+              })),
     );
-    
+
     final passwordfield = TextFormField(
       autofocus: false,
       controller: passwordEditingController,
@@ -245,8 +259,7 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 width: size.width * 0.9,
                 decoration: BoxDecoration(
                   color: kPrimaryLightColor,
