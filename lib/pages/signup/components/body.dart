@@ -67,7 +67,7 @@ class _SignUpState extends State<SignUp> {
           Icons.person,
           color: kPrimaryColor,
         ),
-        hintText: "First Name",
+        hintText: "Name",
         border: InputBorder.none,
       ),
     );
