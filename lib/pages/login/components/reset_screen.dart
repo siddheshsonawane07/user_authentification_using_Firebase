@@ -60,7 +60,16 @@ class _ResetScreen extends State<ResetScreen> {
       ),
     );
 
-
+    final Send_Request = TextButton(
+      onPressed: () {
+        reset(emailController.text);
+      },
+      child: const Text(
+        "Send Request",
+        style: TextStyle(
+            color: kPrimaryColor, fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+    );
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -94,11 +103,14 @@ class _ResetScreen extends State<ResetScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [emailField,],
+                    children: [
+                      emailField,
+                    ],
                   ),
                 ),
               ),
               SizedBox(height: size.height * 0.01),
+              Send_Request,
               SizedBox(height: size.height * 0.02),
               ClipRRect(
                 borderRadius: BorderRadius.circular(25),
@@ -139,46 +151,7 @@ class _ResetScreen extends State<ResetScreen> {
     }
   }
 
-  void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const Dashboard())),
-                });
-      } on FirebaseAuthException catch (error) {
-        switch (error.code) {
-          case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
-
-            break;
-          case "wrong-password":
-            errorMessage = "Your password is wrong.";
-            break;
-          case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
-            break;
-          case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
-            break;
-          case "too-many-requests":
-            errorMessage = "Too many requests";
-            break;
-          case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
-            break;
-          default:
-            errorMessage = "An undefined Error happened.";
-        }
-        Fluttertoast.showToast(msg: errorMessage!);
-        print(error.code);
-      }
-    }
+  void reset(String _email) {
+    _auth.sendPasswordResetEmail(email: _email);
   }
-
-
-
 }
