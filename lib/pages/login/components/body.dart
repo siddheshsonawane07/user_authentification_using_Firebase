@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:toycathon/constants.dart';
 import 'package:toycathon/pages/login/components/background.dart';
+import 'package:toycathon/pages/login/components/reset_screen.dart';
 import 'package:toycathon/pages/main/dashboard.dart';
 import 'package:toycathon/pages/signup/signup_screen.dart';
 import 'package:flutter_svg/svg.dart';
@@ -114,9 +115,9 @@ class _LoginState extends State<Login> {
     );
 
     final ForgotPassword = TextButton(
-      onPressed: () {},
+      onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ResetScreen()));},
       child: const Text(
-        "Forgot Passwprd",
+        "Forgot Password ? ",
         style: TextStyle(
             color: kPrimaryColor,
             fontSize: 16,
@@ -243,4 +244,7 @@ class _LoginState extends State<Login> {
       }
     }
   }
+
+
+
 }
