@@ -1,4 +1,4 @@
-# toycathon
+# User Authentification using Firebase in Flutter App
 
 A new Flutter project.
 
