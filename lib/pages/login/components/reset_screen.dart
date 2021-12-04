@@ -26,7 +26,7 @@ class _ResetScreen extends State<ResetScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = new TextEditingController();
   // ignore: unnecessary_new
-  final TextEditingController passwordController = new TextEditingController();
+  // final TextEditingController passwordController = new TextEditingController();
   final _auth = FirebaseAuth.instance;
   String? errorMessage;
 
@@ -60,69 +60,7 @@ class _ResetScreen extends State<ResetScreen> {
       ),
     );
 
-    final passwordField = TextFormField(
-      autofocus: false,
-      controller: passwordController,
-      obscureText: true,
-      validator: (value) {
-        // ignore: unnecessary_new
-        RegExp regex = new RegExp(r'^.{6,}$');
-        if (value!.isEmpty) {
-          return ("Password is required for login");
-        }
-        if (!regex.hasMatch(value)) {
-          return ("Enter Valid Password(Min. 6 Character)");
-        }
-      },
-      onSaved: (value) {
-        passwordController.text = value!;
-      },
-      textInputAction: TextInputAction.done,
-      cursorColor: kPrimaryColor,
-      decoration: const InputDecoration(
-        icon: Icon(
-          Icons.lock,
-          color: kPrimaryColor,
-        ),
-        hintText: "Password",
-        border: InputBorder.none,
-      ),
-    );
 
-    final loginButton = ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: ElevatedButton(
-        onPressed: () {
-          signIn(emailController.text, passwordController.text);
-        },
-        child: const Text(
-          "LOGIN",
-          style: TextStyle(
-              color: kPrimaryLightColor,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: kPrimaryColor,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          textStyle: const TextStyle(
-              color: kPrimaryLightColor,
-              fontSize: 25,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-    );
-
-    final ForgotPassword = TextButton(
-      onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ResetScreen()));},
-      child: const Text(
-        "Forgot Password ? ",
-        style: TextStyle(
-            color: kPrimaryColor,
-            fontSize: 16,
-            fontWeight: FontWeight.bold),
-      ),
-    );
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -133,7 +71,7 @@ class _ResetScreen extends State<ResetScreen> {
             children: <Widget>[
               SizedBox(height: size.height * 0.03),
               const Text(
-                "LOGIN",
+                "FORGOT PASSWORD",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(height: size.height * 0.03),
@@ -156,14 +94,11 @@ class _ResetScreen extends State<ResetScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [emailField, passwordField],
+                    children: [emailField,],
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.03),
-              loginButton,
               SizedBox(height: size.height * 0.01),
-              ForgotPassword,
               SizedBox(height: size.height * 0.02),
               ClipRRect(
                 borderRadius: BorderRadius.circular(25),
