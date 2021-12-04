@@ -72,31 +72,6 @@ class _SignUpState extends State<SignUp> {
       ),
     );
 
-    final secondNameField = TextFormField(
-      autofocus: false,
-      controller: secondNameEditingController,
-      keyboardType: TextInputType.name,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return ("Second Name cannot be Empty");
-        }
-        return null;
-      },
-      onSaved: (value) {
-        secondNameEditingController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      cursorColor: kPrimaryColor,
-      decoration: const InputDecoration(
-        icon: Icon(
-          Icons.person,
-          color: kPrimaryColor,
-        ),
-        hintText: "Second Name",
-        border: InputBorder.none,
-      ),
-    );
-
     final emailField = TextFormField(
       autofocus: false,
       controller: emailEditingController,
@@ -233,7 +208,6 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     children: <Widget>[
                       firstNameField,
-                      secondNameField,
                       emailField,
                       passwordfield,
                       confirmPasswordField,
@@ -318,7 +292,6 @@ class _SignUpState extends State<SignUp> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.firstName = firstNameEditingController.text;
-    userModel.secondName = secondNameEditingController.text;
 
     await firebaseFirestore
         .collection("users")

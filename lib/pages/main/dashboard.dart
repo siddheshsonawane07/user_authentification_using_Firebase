@@ -49,7 +49,7 @@ class _DashboardState extends State<Dashboard> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text("${loggedInUser.firstName} ${loggedInUser.secondName}",
+                Text("${loggedInUser.firstName}",
                     style: const TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.w500,
