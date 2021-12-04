@@ -60,9 +60,12 @@ class _ResetScreen extends State<ResetScreen> {
       ),
     );
 
+    // ignore: non_constant_identifier_names
     final Send_Request = TextButton(
       onPressed: () {
         reset(emailController.text);
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(msg: "Email sent");
       },
       child: const Text(
         "Send Request",
